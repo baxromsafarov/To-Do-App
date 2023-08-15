@@ -1,0 +1,9 @@
+.cost-date{
+    display: flex;
+    
+}
+
+.cost-dates{
+    margin: 0 2px;
+    font-weight: 700;
+}

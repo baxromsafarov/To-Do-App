@@ -1,0 +1,24 @@
+.add-task{
+    display: flex;
+    width: 100%;
+    margin: 20px;
+    padding: 10px 20px;
+}
+.new-task{
+    display: flex;
+    height: auto;
+    width: 100%;
+    padding-bottom: 15px;
+}
+.icons{
+   color: gray;
+
+}
+.input-task{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.input-task:active{
+    border: none;
+}

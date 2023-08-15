@@ -1,0 +1,12 @@
+.err{
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    color: aliceblue;
+    margin: 0 auto;
+    font-size: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

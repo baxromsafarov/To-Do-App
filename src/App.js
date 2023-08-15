@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import Main from "./components/Main/Main";
+import Header from "./components/Header/Header";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Error from "./components/Error/Error";
+import TasksForm from "./components/TaskForm/TaskForm";
+import { useState } from "react";
+
+const INITIAL_COSTS = [
+  {
+      id: 'c1',
+      date: new Date(2023, 5, 12),
+      description: "勉強する",
+      amount: 'Lorem ipsum dolor.'
+  },
+  {
+      id: 'c',
+      date: new Date(2023, 4, 25),
+      description: "試験に合格する",
+      amount: 'Lorem ipsum dolor.'
+  },
+  {
+      id: 'c3',
+      date: new Date(2023, 1, 11),
+      description: "ミーティング",
+      amount: 'Lorem ipsum dolor.'
+  }
+];
 
 function App() {
+  
+  const [costs, setCosts] = useState(INITIAL_COSTS);
+
+  const addCostHandler = (cost) => {
+    setCosts(prevCosts => {
+      return[cost, ...prevCosts]
+    });
+};
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      
+      <Router>
+      <Header></Header>
+      
+        <Routes>
+            <Route exact path="/main" element={<Main costs={costs}/>}></Route>
+            <Route exact path="/taskform" element={<TasksForm onAddCost={addCostHandler}/>}></Route>
+            <Route path="*" element={<Error/>}></Route>
+        </Routes>
+        
+      </Router>
+      
     </div>
   );
 }
 
 export default App;
+
