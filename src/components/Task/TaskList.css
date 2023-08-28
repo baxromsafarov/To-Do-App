@@ -1,8 +1,14 @@
+
 .add-task{
-    display: flex;
-    width: 100%;
+    /* display: flex; */
+    width: 50%;
     margin: 20px;
+    height: 70px;
+    justify-content: center;
     padding: 10px 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
 }
 .new-task{
     display: flex;
@@ -21,4 +27,12 @@
 }
 .input-task:active{
     border: none;
+}
+
+.cost-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: start;
+    width: 100%;
 }

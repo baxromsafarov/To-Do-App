@@ -16,7 +16,9 @@ function Task(props) {
     const filteredCosts = props.costs.filter(cost => {
         return cost.date.getFullYear().toString() === selectedYear;
     })
-
+    const addCostHandler = (cost) => {
+        props.onAddCost(cost);
+    };
     return (
         <div>
             <div className="costs">
@@ -24,7 +26,7 @@ function Task(props) {
 
                 {/* <CostsDiagram costs={filteredCosts}/> */}
 
-                <TaskList costs={filteredCosts}/>
+                <TaskList class={props.class} onAddNewTask={addCostHandler} costs={filteredCosts}/>
                             
             </div>
         </div>

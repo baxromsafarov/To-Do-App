@@ -1,0 +1,10 @@
+.important{
+    background: #78a3eb;
+    background: -moz-linear-gradient(45deg,  #78a3eb 0%, #fbc2eb 58%, #fbc2eb 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78a3eb', endColorstr='#fbc2eb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height: 100vh;
+    width: 100%;
+}
+

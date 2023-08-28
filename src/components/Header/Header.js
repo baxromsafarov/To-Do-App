@@ -34,11 +34,13 @@ const Header = () => {
         </div>
         <div className="cotegories">
             <ul>
-                <li><NavLink to="/main">
-                <span className="material-symbols-outlined icons">
-                    light_mode
-                </span>
-                </NavLink></li>
+                <li>
+                    <NavLink to="/">
+                        <span className="material-symbols-outlined icons">
+                            light_mode
+                        </span>
+                    </NavLink>
+                </li>
                 <li>
                     <NavLink to="/taskform">
                         <span className="material-symbols-outlined icons">
@@ -46,16 +48,21 @@ const Header = () => {
                         </span>
                     </NavLink>
                 </li>
-                {/* <li><NavLink to="/important">
-                <span className="material-symbols-outlined icons">
-                    query_stats
-                </span>
-                </NavLink></li>
-                <li><NavLink to="/planed">
-                <span className="material-symbols-outlined icons">
-                    calendar_month
-                </span></NavLink></li>
-                <li><NavLink to="/tasks">
+                <li>
+                    <NavLink to="/important">
+                        <span className="material-symbols-outlined icons">
+                            stars
+                        </span>
+                    </NavLink>
+                </li>
+               <li>
+                    <NavLink to="/calendar">
+                        <span className="material-symbols-outlined icons">
+                            calendar_month
+                        </span>
+                    </NavLink>
+                </li>
+                 {/* <li><NavLink to="/tasks">
                 <span className="material-symbols-outlined icons">
                     library_add
                 </span>
@@ -71,16 +78,16 @@ const Header = () => {
 
             <ul className="list-unstyled components">
                 <li className="activess">
-                    <a href="#home">サインイン</a>
+                    <NavLink to="/login">サインイン</NavLink>
                 </li>
                 <li>
-                    <a href="#about">タスクの追加</a>
+                    <NavLink to="/taskform">タスクの追加</NavLink>
                 </li>
                 <li>
-                    <a href="#services">重要</a>
+                    <NavLink to="/important">重要</NavLink>
                 </li>
                 <li>
-                    <a href="#contact">全てのタスク</a>
+                    <NavLink to="#contact">全てのタスク</NavLink>
                 </li>
             </ul>
         </nav>

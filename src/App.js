@@ -4,6 +4,12 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Error from "./components/Error/Error";
 import TasksForm from "./components/TaskForm/TaskForm";
 import { useState } from "react";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Important from "./components/Important/Important";
+import Calendar from "./components/Calendar/Calendar";
+import AddTask from "./components/AddTask/AddTask";
+import axios, {isCancel, AxiosError} from 'axios';
 
 const INITIAL_COSTS = [
   {
@@ -26,8 +32,16 @@ const INITIAL_COSTS = [
   }
 ];
 
-function App() {
+const apiInfo = {
+  host: 'http://todo.loc',
+  apiHost: 'http://todo.loc/api/',
+}
+
+
+
+function App() {  
   
+
   const [costs, setCosts] = useState(INITIAL_COSTS);
 
   const addCostHandler = (cost) => {
@@ -35,6 +49,7 @@ function App() {
       return[cost, ...prevCosts]
     });
 };
+
   return (
     <div className="container">
       
@@ -42,8 +57,12 @@ function App() {
       <Header></Header>
       
         <Routes>
-            <Route exact path="/main" element={<Main costs={costs}/>}></Route>
+            <Route exact path="/" element={<Main onAddCost={addCostHandler} costs={costs}/>}></Route>
             <Route exact path="/taskform" element={<TasksForm onAddCost={addCostHandler}/>}></Route>
+            <Route exact path="/login" element={<Login/>}></Route>
+            <Route exact path="/register" element={<Register apiInfo={apiInfo}/>}></Route>
+            <Route exact path="/important" element={<Important onAddCost={addCostHandler} costs={costs}/>}></Route>
+            <Route exact path="/calendar" element={<Calendar/>}></Route>
             <Route path="*" element={<Error/>}></Route>
         </Routes>
         

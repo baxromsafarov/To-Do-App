@@ -2,12 +2,17 @@ import "./TaskList.css";
 import TaskItem from "./TaskItem";
 import Card from "../UI/Card";
 import { Link } from "react-router-dom";
+import AddTask from '../AddTask/AddTask'
+
 const TaskList = (props) => {
     
     if (props.costs.length === 0){
         return <h2 className="cost-list__fallback">В этом году Расходов Нет</h2>
     }
+    const addCostHandler = (costData) => {
 
+       props.onAddNewTask(costData);
+    };
 
     return (
             <ul className="cost-list">
@@ -17,18 +22,12 @@ const TaskList = (props) => {
             date={cost.date}
             description={cost.description}
             amount={cost.amount}
+            class={props.class}
             /> 
         ))}
-            <Card className="add-task">
-                <div className="new-task">
-                    <label htmlFor="taks">
-                        <span className="material-symbols-outlined icons">
-                            add_circle
-                        </span>
-                        <input name="taks" className="input-task" type="text" placeholder="Add a Task" />
-                    </label>
-                </div>
-            </Card>
+            <div className="add-task">
+                <AddTask onAddTask={addCostHandler}/>
+            </div>
             </ul>
         );
 }

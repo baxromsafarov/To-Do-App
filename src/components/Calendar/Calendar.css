@@ -1,0 +1,113 @@
+.calendars{
+    background: #78a3eb;
+    background: -moz-linear-gradient(45deg,  #78a3eb 0%, #fbc2eb 58%, #fbc2eb 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78a3eb', endColorstr='#fbc2eb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height: 100vh;
+    width: 100%;
+}
+.c-container{
+    padding-top: 80px;
+}
+.calendar-block {
+    width: 500px;
+    height: 700px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .calendar-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .calendar-dates {
+    flex-grow: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .days-of-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .day {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .task-input {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  #task-input {
+    flex-grow: 1;
+    padding: 5px;
+  }
+  
+  #add-task-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  #task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-item {
+    margin-bottom: 5px;
+  }
+  .App {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    width: 80%;
+  }
+  
