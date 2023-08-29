@@ -1,88 +1,94 @@
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Register.css';
-import axios, {isCancel, AxiosError} from 'axios';
-import { useState } from 'react';
+import {useState} from 'react';
+import error from "../Error/Error";
 
-function Register(props){
+function Register({axios}) {
     const [inputemail, setInputEmail] = useState('');
     const [inputname, setInputName] = useState('');
     const [inputpassword, setInputPassword] = useState('');
 
-    const emailChangeHandler = (event) =>{
+    const emailChangeHandler = (event) => {
         setInputEmail(event.target.value);
     };
-    
-    const nameChangeHandler = (event) =>{
+
+    const nameChangeHandler = (event) => {
         setInputName(event.target.value);
     };
-    
-    const passChangeHandler = (event) =>{
+
+    const passChangeHandler = (event) => {
         setInputPassword(event.target.value);
     };
 
-    const onSubmitHandler = (event) =>{
-
-
+    const onSubmitHandler = (event) => {
         event.preventDefault();
 
         const registerData = {
-            email : inputemail,
+            email: inputemail,
             name: inputname,
             password: inputpassword,
             password_confirmation: inputpassword
         };
 
-        
+        axios.post('/register', registerData)
+            .then(response => {
+                console.log(response.data)
+            }).catch(error => {
+            console.error('Error in register', error)
+        })
 
     }
 
-    return(
+    return (
         <div className='register-form'>
-           
-             <div className="section">  
 
-                <div className="signin form-res"> 
+            <div className="section">
 
-                    <div className="form-content"> 
+                <div className="signin form-res">
 
-                        <h2>Sign Up</h2> 
+                    <div className="form-content">
 
-                        <div className="form "> 
-                        <form action="" onSubmit={onSubmitHandler}>
+                        <h2>Sign Up</h2>
 
-                            <div className="inputBox"> 
+                        <div className="form ">
+                            <form action="" onSubmit={onSubmitHandler}>
 
-                                <input className='input1' type="text" onChange={emailChangeHandler} required/> <i>Email</i> 
+                                <div className="inputBox">
 
-                            </div>
+                                    <input className='input1' type="text" onChange={emailChangeHandler} required/>
+                                    <i>Email</i>
 
-                            <div className="inputBox"> 
+                                </div>
 
-                                <input className='input1' type="text" onChange={nameChangeHandler} required/> <i>Username</i> 
+                                <div className="inputBox">
 
-                            </div> 
+                                    <input className='input1' type="text" onChange={nameChangeHandler} required/>
+                                    <i>Username</i>
 
-                            <div className="inputBox"> 
+                                </div>
 
-                                <input className='input1' type="password" onChange={passChangeHandler} required/> <i>Password</i> 
+                                <div className="inputBox">
 
-                            </div> 
+                                    <input className='input1' type="password" onChange={passChangeHandler} required/>
+                                    <i>Password</i>
 
-                            <div className="links"> Already have account? <NavLink to="/login">Sign in</NavLink> 
+                                </div>
 
-                            </div> 
+                                <div className="links"> Already have account? <NavLink to="/login">Sign in</NavLink>
 
-                            <div className="inputBox"> 
+                                </div>
 
-                                <input className='input1' type="submit" value="Register"/> 
+                                <div className="inputBox">
 
-                            </div> 
+                                    <input className='input1' type="submit" value="Register"/>
+
+                                </div>
                             </form>
-                        </div> 
-                    </div> 
-                </div> 
+                        </div>
+                    </div>
+                </div>
 
-            </div> 
+            </div>
         </div>
     )
 }
