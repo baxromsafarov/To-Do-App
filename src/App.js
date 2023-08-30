@@ -12,25 +12,19 @@ import AddTask from "./components/AddTask/AddTask";
 import axios, {isCancel, AxiosError} from 'axios';
 import error from "./components/Error/Error";
 
-const INITIAL_COSTS = [
+const initialTasks = [
     {
-        id: 'c1',
+        id: 1,
         date: new Date(2023, 5, 12),
         description: "勉強する",
         amount: 'Lorem ipsum dolor.'
     },
     {
-        id: 'c',
-        date: new Date(2023, 4, 25),
-        description: "試験に合格する",
+        id: 2,
+        date: new Date(2023, 5, 12),
+        description: "勉強する",
         amount: 'Lorem ipsum dolor.'
     },
-    {
-        id: 'c3',
-        date: new Date(2023, 1, 11),
-        description: "ミーティング",
-        amount: 'Lorem ipsum dolor.'
-    }
 ];
 
 const apiInfo = {
@@ -48,7 +42,6 @@ function App() {
 
     const fetchCsrfToken = async () => {
         try {
-            // const response = await axios.get(apiInfo.apiHost + '/csrf-token');
             const response = await axios.get(apiInfo.host + '/sanctum/csrf-cookie');
             console.log(response.data)
             setCsrfToken(response.data);
@@ -66,11 +59,11 @@ function App() {
         withCredentials: true
     })
 
-    const [costs, setCosts] = useState(INITIAL_COSTS);
+    const [tasks, setTask] = useState(initialTasks);
 
-    const addCostHandler = (cost) => {
-        setCosts(prevCosts => {
-            return [cost, ...prevCosts]
+    const addTaskHandler = (task) => {
+        setTask(prevTasks => {
+            return [task, ...prevTasks]
         });
     };
 
@@ -81,13 +74,13 @@ function App() {
                 <Header></Header>
 
                 <Routes>
-                    <Route exact path="/" element={<Main onAddCost={addCostHandler} costs={costs}/>}></Route>
-                    <Route exact path="/taskform" element={<TasksForm onAddCost={addCostHandler}/>}></Route>
+                    <Route exact path="/" element={<Main onAddTask={addTaskHandler} tasks={tasks}/>}></Route>
+                    <Route exact path="/taskform" element={<TasksForm onAddTask={addTaskHandler}/>}></Route>
                     <Route exact path="/login" element={<Login/>}></Route>
                     <Route exact path="/register"
                            element={<Register apiInfo={apiInfo} axios={axiosWithToken}/>}></Route>
                     <Route exact path="/important"
-                           element={<Important onAddCost={addCostHandler} costs={costs}/>}></Route>
+                           element={<Important onAddTask={addTaskHandler} tasks={tasks}/>}></Route>
                     <Route exact path="/calendar" element={<Calendar/>}></Route>
                     <Route path="*" element={<Error/>}></Route>
                 </Routes>

@@ -4,38 +4,33 @@ import Star from "./Star";
 import TaskDate from "./TaskDate";
 import "./TaskItem.css"
 
-function TaskItem(props){
+function TaskItem(props) {
+    const taskDate = props.date;
+    const taskDescription = props.description;
+    const taskAmount = props.amount;
+    const taskId = props.id
 
 
-
-    // propsi mojno bilo ispolzovat pryamo v divax
-    const costDate = props.date;
-    const costDescription = props.description;
-    const costAmount = props.amount;
-
-    
     return (
         <div className="card-box">
             <Card className={props.class}>
                 <div className="btn-input">
                     <label className="container-input">
-                        <input type="checkbox" />
+                        <input type="checkbox"/>
                         <div className="checkmark"></div>
                     </label>
-                    <Star id={costDescription}/>
-                    <Skip id={costDescription}/>
+                    <Star id={taskId}/>
+                    <Skip id={taskId}/>
                 </div>
                 <div className="desc-data">
                     <div className="titles">
-                        <h2>{costDescription}</h2>
+                        <h2>{taskDescription}</h2>
                         {/* <TaskDate date={costDate}/> */}
                     </div>
-                    <div className="cost-item__price">{costAmount}</div>
+                    <div className="cost-item__price">{taskAmount}</div>
                 </div>
-                
-                
             </Card>
-            
+
         </div>
     );
 }

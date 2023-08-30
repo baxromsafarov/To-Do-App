@@ -32,7 +32,9 @@ function Register({axios}) {
 
         axios.post('/register', registerData)
             .then(response => {
-                console.log(response.data)
+                const {token} = response.data
+                localStorage.setItem('userToken', token)
+                console.log(token)
             }).catch(error => {
             console.error('Error in register', error)
         })
@@ -50,38 +52,29 @@ function Register({axios}) {
 
                         <h2>Sign Up</h2>
 
-                        <div className="form ">
+                        <div className="form">
                             <form action="" onSubmit={onSubmitHandler}>
-
                                 <div className="inputBox">
-
                                     <input className='input1' type="text" onChange={emailChangeHandler} required/>
                                     <i>Email</i>
-
                                 </div>
 
                                 <div className="inputBox">
-
                                     <input className='input1' type="text" onChange={nameChangeHandler} required/>
                                     <i>Username</i>
-
                                 </div>
 
                                 <div className="inputBox">
-
                                     <input className='input1' type="password" onChange={passChangeHandler} required/>
                                     <i>Password</i>
 
                                 </div>
 
                                 <div className="links"> Already have account? <NavLink to="/login">Sign in</NavLink>
-
                                 </div>
 
                                 <div className="inputBox">
-
                                     <input className='input1' type="submit" value="Register"/>
-
                                 </div>
                             </form>
                         </div>
