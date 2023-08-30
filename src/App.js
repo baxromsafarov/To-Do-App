@@ -81,7 +81,7 @@ function App() {
                            element={<Register apiInfo={apiInfo} axios={axiosWithToken}/>}></Route>
                     <Route exact path="/important"
                            element={<Important onAddTask={addTaskHandler} tasks={tasks}/>}></Route>
-                    <Route exact path="/calendar" element={<Calendar/>}></Route>
+                    <Route exact path="/calendar" element={<Calendar allTasks={tasks}/>}></Route>
                     <Route path="*" element={<Error/>}></Route>
                 </Routes>
 

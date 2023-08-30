@@ -1,42 +1,65 @@
 import React, { useState } from "react";
 import Calendar from 'react-calendar';
 import Modal from 'react-modal';
-
+import { DateRangePicker } from 'react-date-range';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 
-function Calendars() {
-  const [date, setDate] = useState(new Date());
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState({});
+function Calendars(props) {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [tasks, setTasks] = useState(props.allTasks);
 
-  const handleDateChange = (date) => {
-    setDate(date);
-    setModalIsOpen(true);
-  };
 
-  const handleAddTask = () => {
-    setTasks({ ...tasks, [date]: task });
-    setTask("");
-    setModalIsOpen(false);
-  };
 
-  return (
-    <div className="calendars">
-        <div className="c-container">
-            <div className="App">
-            <Calendar onClickDay={handleDateChange} />
-            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <h2>Add Task</h2>
-                <input type="text" value={task} onChange={(e) => setTask(e.target.value)} />
-                <button onClick={handleAddTask}>Add</button>
-            </Modal>
-            {tasks[date] && <div className="task">{tasks[date]}</div>}
+    const handleSelect = (date) => {
+        setStartDate(date.selection.startDate);
+        setEndDate(date.selection.endDate);
+        let filtered = props.allTasks.filter((task)=>{
+            let taskDate = new Date(task.date);
+            return (
+                taskDate >= date.selection.startDate &&
+                taskDate <= date.selection.endDate
+            );
+        })
+
+        setTasks(filtered);
+    }
+
+    const selectionRange = {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection',
+    }
+
+
+    return (
+
+        <div className="calendars">
+            <div className="c-container">
+                <div className="App">
+                    <DateRangePicker
+                        ranges={[selectionRange]}
+                        onChange={handleSelect}
+                    />
+
+                </div>
+                <div className="fil-tasks">
+                    {tasks.map((task)=>{
+                        let date = new Date(task.date);
+                        return (
+                            <div key={task.id}>
+                                <h2>{task.description}</h2>
+                                <h2>{date.toLocaleDateString()}</h2>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default Calendars;
