@@ -13,28 +13,67 @@ import axios, {isCancel, AxiosError} from 'axios';
 import error from "./components/Error/Error";
 
 const initialTasks = [
-    {
-        id: 1,
-        date: new Date(2023, 5, 12),
-        description: "勉強する",
-        amount: 'Lorem ipsum dolor.'
-    },
-    {
-        id: 2,
-        date: new Date(2023, 5, 12),
-        description: "勉強する",
-        amount: 'Lorem ipsum dolor.'
-    },
+    // {
+    //     id: 1,
+    //     date: new Date(2023, 8, 12),
+    //     description: "勉強する",
+    //     amount: 'Lorem ipsum dolor.'
+    // },
+    // {
+    //     id: 2,
+    //     date: new Date(2023, 8, 12),
+    //     description: "勉強する",
+    //     amount: 'Lorem ipsum dolor.'
+    // },
 ];
+
+
 
 const apiInfo = {
     host: 'http://todo.loc',
     apiHost: 'http://todo.loc/api',
 }
 
+const loggedUser = localStorage.getItem('userToken');
 
 function App() {
+
+    useEffect(() => {
+
+        if (loggedUser) {
+            getUserData();
+            getUserTasks();
+        } else {
+            const localData = JSON.parse(localStorage.getItem('tasks')) || [];
+            setTask(localData);
+        }
+    }, []);
+
+    const getUserData = async () => {
+        try {
+            const response = await loggedAxios.get('/user');
+            setUser(response.data);
+        } catch (error) {
+            console.error('Error getting user data', error);
+        }
+    };
+
+    const  getUserTasks =async () =>{
+        try {
+            const response = await loggedAxios.get('/todos ');
+            setTask(response.data.todo_list);
+            console.log(response.data.todo_list)
+            console.log(tasks)
+        } catch (error) {
+            console.error('Error getting todos data', error);
+        }
+    }
+
+
     const [csrfToken, setCsrfToken] = useState('')
+
+    const [user, setUser] = useState('')
+
 
     useEffect(() => {
         fetchCsrfToken();
@@ -55,6 +94,16 @@ function App() {
         headers: {
             'X-CSRF-TOKEN': csrfToken,
             'Content-Type': 'application/json',
+        },
+        withCredentials: true
+    })
+
+    const loggedAxios = axios.create({
+        baseURL: apiInfo.apiHost,
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${loggedUser}`
         },
         withCredentials: true
     })
@@ -90,6 +139,4 @@ function App() {
         </div>
     );
 }
-
 export default App;
-
