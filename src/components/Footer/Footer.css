@@ -1,0 +1,110 @@
+.footer-wrapper{
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    backdrop-filter: blur(20px);
+    position: fixed;
+    display: none;
+    justify-content: space-around;
+    box-shadow: 0 2px 5px rgb(168, 154, 173);
+    background: #78a3eb;
+    background: -moz-linear-gradient(45deg,  #78a3eb 0%, #fbc2eb 58%, #fbc2eb 100%);
+    background: -webkit-linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); 
+    background: linear-gradient(45deg,  #78a3eb -80%,#fbc2eb 58%,#fbc2eb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78a3eb', endColorstr='#fbc2eb',GradientType=1 ); 
+    z-index: 998;
+}
+
+.footer-cotegories{
+    display: flex;
+    align-items: center;
+    
+}
+
+.footer-cotegories ul{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-cotegories li{
+    list-style: none;
+    text-align: left;
+    border-radius: 50px;
+}
+
+
+.footer-cotegories a{
+    
+    text-decoration: none;
+    color: rgb(107, 107, 107);
+    background-color: rgb(231,190,232);
+    border-radius: 50px;
+    text-align: left;
+    padding: 10px 20px;
+    margin: 0 50px 0 50px;
+    transition: 70ms;
+}
+
+.footer-cotegories a:hover{
+    background-color: rgb(200,199,243);
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 2px rgb(158,146,181);
+    border: none;
+}
+
+@media (max-width: 768px) {
+    
+    .footer-wrapper{
+        display: flex;
+    
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .footer-cotegories a {
+        margin: 10px 10px;
+    }
+
+    #sidebar {
+        width: 100%;
+        right: -100%;
+        
+    }
+
+    #sidebar.activess {
+        right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .icons{
+        font-size: 24px;
+    }
+
+    .footer-cotegories a {
+        padding: 8px 16px;
+    }
+
+    .btn {
+        width: 120px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .btn .text {
+        transform: translateX(45px);
+    }
+
+    .btn:hover .icon {
+        width: 140px;
+    }
+}

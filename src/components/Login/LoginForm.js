@@ -1,47 +1,85 @@
 import './LoginForm.css';
-import {  NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
+import {useState} from 'react';
 
-function LoginForm() {
-    console.log('asdasdada')
+function LoginForm({axios}) {
+    const [inputemail, setInputEmail] = useState('');
+    const [inputpassword, setInputPassword] = useState('');
+
+    const emailChangeHandler = (event) => {
+        setInputEmail(event.target.value);
+    };
+
+    const passChangeHandler = (event) => {
+        setInputPassword(event.target.value);
+    };
+
+    const onSubmitHandler = (event) => {
+        event.preventDefault();
+
+        const registerData = {
+            email: inputemail,
+            password: inputpassword,
+            password_confirmation: inputpassword
+        };
+
+        axios.post('/login', registerData)
+            .then(response => {
+                const {token} = response.data
+                localStorage.setItem('userToken', token)
+
+                window.location.href = '/';
+                // window.location.reload();
+            }).catch(error => {
+            console.error('Error in login', error)
+        })
+
+    }
+
     return (
-        <div >
-           
-             <div className="section">  
+        <div>
 
-                <div className="signin"> 
+            <div className="section">
 
-                    <div className="form-content"> 
+                <div className="signin">
 
-                        <h2>Sign In</h2> 
+                    <div className="form-content">
 
-                        <div className="form"> 
+                        <h2>Sign In</h2>
 
-                            <div className="inputBox"> 
+                        <div className="form">
+                            <form action="" onSubmit={onSubmitHandler}>
 
-                                <input className='input1' type="text" required/> <i>Username</i> 
+                                <div className="inputBox">
 
-                            </div> 
+                                    <input className='input1' type="text" onChange={emailChangeHandler} required/>
+                                    <i>Email</i>
 
-                            <div className="inputBox"> 
+                                </div>
 
-                                <input className='input1' type="password" required/> <i>Password</i> 
+                                <div className="inputBox">
 
-                            </div> 
+                                    <input className='input1' type="password" onChange={passChangeHandler} required/>
+                                    <i>Password</i>
 
-                            <div className="links"> <NavLink className='forgot' to="#">Forgot Password</NavLink> <NavLink to="/register">Signup</NavLink> 
+                                </div>
 
-                            </div> 
+                                <div className="links"><NavLink className='forgot' to="#">Forgot Password</NavLink>
+                                    <NavLink to="/register">Signup</NavLink>
 
-                            <div className="inputBox"> 
+                                </div>
 
-                                <input className='input1' type="submit" value="Login"/> 
+                                <div className="inputBox">
 
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
+                                    <input className='input1' type="submit" value="Login"/>
 
-            </div> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     )
 

@@ -13,7 +13,7 @@ function AddTask(props) {
         event.preventDefault();
 
         const taskData = {
-            description: inputname,
+            task_name: inputname,
         };
 
         saveTaskDataHandler(taskData);
@@ -24,22 +24,19 @@ function AddTask(props) {
         const visibility = document.querySelector('.add-data');
         const formHeight = document.querySelector('.add-task');
         visibility.classList.add("show-data");
-        formHeight.style.height = "auto"
+        // formHeight.style.height = "auto"
     }
 
     const saveTaskDataHandler = (inputTaskData) => {
         const taskData = {
             ...inputTaskData,
-            id: Math.random(),
-            date: new Date()
         }
         props.onAddTask(taskData);
-
 
         const visibility = document.querySelector('.add-data');
         const formHeight = document.querySelector('.add-task');
         visibility.classList.remove("show-data");
-        formHeight.style.height = "70px"
+        // formHeight.style.height = "70px"
     };
 
     return (
@@ -50,7 +47,7 @@ function AddTask(props) {
                         <span className="material-symbols-outlined icons">
                             add_circle
                         </span>
-                        <input name="taks" className="input-task" type="text" placeholder="Add a Task" value={inputname}
+                        <input name="taks" className="input-task" type="text" placeholder="タスクを追加" value={inputname}
                                onChange={nameChangeHandler}/>
                     </label>
                 </div>

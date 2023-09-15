@@ -1,28 +1,24 @@
-import './Important.css';
+import './Done.css';
 import Task from '../Task/Task';
 import {useState} from "react";
 
-function Important(props) {
+function Done(props) {
+    const filteredTasks = props.tasks.filter(task => {
+        return task.completed
+    })
     const addTaskHandler = (task) => {
         props.onAddTask(task);
     };
-
-
-    const filteredTasks = props.tasks.filter(task => {
-        if (task.completed) return false
-        return task.favorite
-    })
 
     return (
         <div className="important">
             <div className="content">
                 <div className="container-card">
                     <div className="card-list">
-                        <Task onCompiled={props.onCompiled}
+                        <Task onAddTask={addTaskHandler}
+                              onCompiled={props.onCompiled}
                               onFavorite={props.onFavorite}
-                              onDelete={props.onDelete}
-                              onAddTask={addTaskHandler} tasks={filteredTasks}
-                              cats={props.cats}></Task>
+                              onDelete={props.onDelete} cats={props.cats} tasks={filteredTasks}></Task>
                     </div>
                 </div>
             </div>
@@ -30,4 +26,4 @@ function Important(props) {
     )
 }
 
-export default Important;
+export default Done;

@@ -1,14 +1,14 @@
 import './Login.css';
 import LoginForm from './LoginForm';
 
-function Login () {
+function Login({axios}) {
 
-    return(
-       
+    return (
+
         <div className='loginForm'>
-             <LoginForm/> 
-         </div>
-        
+            <LoginForm axios={axios}/>
+        </div>
+
     )
 }
 

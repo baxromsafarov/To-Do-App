@@ -1,6 +1,13 @@
 *{
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
 }
 
+.container{
+    display: grid;
+    grid-template-areas:
+          "h h h"
+          "m m s"
+          "f f f";
+}

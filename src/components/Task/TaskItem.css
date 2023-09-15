@@ -1,19 +1,21 @@
-.cost-item{
+.cost-item {
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between;
-    
+    justify-content: space-between;
+
     width: 100%;
-    margin: 20px 0px;
+    margin: 30px 0px;
     padding: 10px 20px;
-    
 }
-.titles{
+
+
+.titles {
     margin-right: 50px;
-    width: 200px;
     float: left;
+    text-align: left;
 }
-.to-card{
+
+.to-card {
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -24,6 +26,7 @@
     margin: 20px;
     padding: 10px 20px;
 }
+
 /* Hide the default checkbox */
 .container-input input {
     position: absolute;
@@ -31,18 +34,17 @@
     cursor: pointer;
     height: 0;
     width: 0;
-   }
-   
-   .container-input {
+}
+
+.container-input {
     display: block;
     position: relative;
     cursor: pointer;
     font-size: 20px;
     user-select: none;
-   }
-   
-   /* Create a custom checkbox */
-   .checkmark {
+}
+
+.checkmark {
     position: relative;
     top: 0;
     left: 0;
@@ -51,29 +53,25 @@
     background-color: #ccc;
     border-radius: 25px;
     transition: 0.15s;
-   }
-   
-   /* When the checkbox is checked, add a blue background */
-   .container-input input:checked ~ .checkmark {
+}
+
+.container-input input:checked ~ .checkmark {
     background-color: limegreen;
     border-radius: 25px;
     transition: 0.15s;
-   }
-   
-   /* Create the checkmark/indicator (hidden when not checked) */
-   .checkmark:after {
+}
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-   }
-   
-   /* Show the checkmark when checked */
-   .container-input input:checked ~ .checkmark:after {
+}
+
+.container-input input:checked ~ .checkmark:after {
     display: block;
-   }
-   
-   /* Style the checkmark/indicator */
-   .container-input .checkmark:after {
+}
+
+.container-input .checkmark:after {
     left: 0.45em;
     top: 0.25em;
     width: 0.25em;
@@ -81,21 +79,131 @@
     border: solid white;
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
-   }
+}
 
-   .btn-input{
+.btn-input {
     display: flex;
-    justify-content: space-between;
-    width: 100px;
-   }
-.desc-data{
+    justify-content: space-around;
+    min-width: 75px;
+    align-items: center;
+}
+
+.desc-data {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
-.card-box{
+
+.card-box {
     width: 100%;
+    margin-bottom: 20px;
 }
-.cost-item__price{
+
+.cost-item__price {
     float: left;
 }
+
+.right-icons {
+    display: flex;
+    float: right;
+}
+
+.task-item {
+    padding: 5px 0;
+    padding-left: 10px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prority_1 {
+    border-left: #00ff29 10px solid;
+}
+.prority_2 {
+    border-left: yellow 10px solid;
+}
+.prority_3 {
+    border-left: red 10px solid;
+}
+
+.left-icons {
+    display: flex;
+}
+
+.edit a {
+    text-decoration: none;
+    color: black;
+    margin-right: 12px;
+
+}
+
+.cats {
+    display: inline-flex;
+}
+
+.cats span {
+    padding: 0.3rem .6rem;
+    margin-right: 3px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-weight: bold;
+    font-size: 0.7em;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cats span:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+@keyframes radio-translate {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* @media screen and (max-width: 768px) {
+  .titles h2{
+      font-size: 20px;
+  }
+}
+@media screen and (max-width: 578px) {
+
+  .task-item{
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      height: auto;
+  }
+  .left-icons{
+      flex-direction: column;
+      margin: 20px 0;
+      padding: 0;
+  }
+  .titles{
+      margin: 20px 0;
+      padding: 0;
+  }
+  .right-icons{
+      margin: 20px 0;
+      padding: 0;
+  }
+  .edit{
+      padding: 0;
+      margin: 0;
+  }
+} */

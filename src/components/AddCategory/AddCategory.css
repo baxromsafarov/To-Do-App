@@ -1,0 +1,68 @@
+.cat{
+    background: #78a3eb;
+    background: -moz-linear-gradient(45deg,  #78a3eb 0%, #fbc2eb 58%, #fbc2eb 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78a3eb', endColorstr='#fbc2eb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat-list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 80px;
+}
+.cat-link{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.error {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 320px;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgb(200,199,243);
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px -3px #111;
+  }
+  
+  .error__icon {
+    width: 20px;
+    height: 20px;
+    transform: translateY(-2px);
+    margin-right: 8px;
+  }
+  
+  .error__icon path {
+    fill: #fff;
+  }
+  
+  .error__title {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .error__close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .error__close path {
+    fill: #fff;
+  }

@@ -34,7 +34,7 @@ function Register({axios}) {
             .then(response => {
                 const {token} = response.data
                 localStorage.setItem('userToken', token)
-                console.log(token)
+                window.location.href = '/';
             }).catch(error => {
             console.error('Error in register', error)
         })

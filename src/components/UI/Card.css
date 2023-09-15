@@ -4,6 +4,7 @@
     background-color: aliceblue;
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    justify-content: space-between;
+    margin-bottom: 5px;
     padding: 5px;
 }

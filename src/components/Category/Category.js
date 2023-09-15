@@ -1,16 +1,16 @@
-import './Important.css';
-import Task from '../Task/Task';
 import {useState} from "react";
+import {NavLink, useParams} from "react-router-dom";
+import '../Important/Important.css';
+import Task from '../Task/Task';
 
-function Important(props) {
+function Category(props) {
+    let {id} = useParams();
     const addTaskHandler = (task) => {
         props.onAddTask(task);
     };
 
-
     const filteredTasks = props.tasks.filter(task => {
-        if (task.completed) return false
-        return task.favorite
+        return task?.todo_categories.some(category => category.category_id == id);
     })
 
     return (
@@ -20,9 +20,7 @@ function Important(props) {
                     <div className="card-list">
                         <Task onCompiled={props.onCompiled}
                               onFavorite={props.onFavorite}
-                              onDelete={props.onDelete}
-                              onAddTask={addTaskHandler} tasks={filteredTasks}
-                              cats={props.cats}></Task>
+                              onDelete={props.onDelete} onAddTask={addTaskHandler} cats={props.cats} tasks={filteredTasks}></Task>
                     </div>
                 </div>
             </div>
@@ -30,4 +28,4 @@ function Important(props) {
     )
 }
 
-export default Important;
+export default Category;

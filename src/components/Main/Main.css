@@ -7,7 +7,7 @@
     list-style: none;
     text-decoration: none;
     scroll-behavior: smooth;
-    
+
 }
 
 .content{
@@ -20,7 +20,8 @@
     background: -webkit-linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(45deg,  #78a3eb 0%,#fbc2eb 58%,#fbc2eb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78a3eb', endColorstr='#fbc2eb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-   
+    overflow: scroll;
+    padding-top: 10px;
 }
 
 
@@ -43,15 +44,16 @@
     justify-content: center;
 }
 .container-card{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(0px, auto)); 
-        width: 70%;
-        align-items: center;
-        margin-top: 5rem;
-        cursor: pointer;
-        border-radius: 15px;
-        display: flex;
-        justify-content: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0px, auto));
+    width: 70%;
+    /*align-items: center;*/
+    /* margin-top: 5rem; */
+    cursor: pointer;
+    border-radius: 15px;
+    display: flex;
+    justify-content: start;
+    padding: 0 80px;
 }
 
 .toggle{
