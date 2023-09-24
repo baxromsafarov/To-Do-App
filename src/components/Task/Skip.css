@@ -21,6 +21,10 @@
     transform: rotateX(30deg);
 }
 
+.toggleButton {
+    cursor: pointer;
+}
+
 .checkbox-wrapper-44 .toggleButton input + div {
     border: 3px solid rgba(0, 0, 0, 0.2);
     border-radius: 50%;

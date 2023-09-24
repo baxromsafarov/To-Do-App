@@ -42,7 +42,7 @@
 }
 
 .form {
-    margin: 2em auto 0 auto;
+    margin: auto 0 auto;
     background-color: #fff;
     overflow: hidden;
     border-radius: 1em;
@@ -115,5 +115,11 @@
 
     .new-cost__control {
         width: 100%;
+    }
+    .new-cost__control label{
+        font-size: 15px;
+    }
+    .new-cost__control input{
+        height: 25px;
     }
 }

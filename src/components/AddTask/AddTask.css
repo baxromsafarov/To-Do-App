@@ -60,7 +60,7 @@
     color: rgb(39, 39, 39);
 }
 
-.category-input input[type="radio"] {
+.category-input input[type="checkbox"] {
     display: none;
 }
 
@@ -92,12 +92,12 @@
     transition: all 0.3s ease-in-out;
 }
 
-.category-input input[type="radio"]:checked + label:before {
+.category-input input[type="checkbox"]:checked + label:before {
     background-color: green;
     top: 0;
 }
 
-.category-input input[type="radio"]:checked + label {
+.category-input input[type="checkbox"]:checked + label {
     background-color: royalblue;
     color: #fff;
     border-color: rgb(129, 235, 129);
@@ -138,4 +138,15 @@
 
 .input-task{
     text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+    .add-data > h2{
+        font-size: 15px;
+    }
+    .input-task{
+        font-size: 15px;
+    }
+    .category h2{
+        font-size: 15px;
+    }
 }

@@ -2,6 +2,9 @@
     display: none;
 }
 
+.important-button > *{
+    cursor: pointer;
+}
 label svg {
     width: 26px;
     height: 26px;

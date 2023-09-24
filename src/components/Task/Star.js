@@ -2,7 +2,7 @@ import './Star.css';
 
 function Star(props) {
     return (
-        <div>
+        <div className="important-button">
             <input className='star-input' type="checkbox" checked={props.favorite} onChange={props.handler}
                    id={'task_id_' + props.id}/>
             <label htmlFor={'task_id_' + props.id}>
