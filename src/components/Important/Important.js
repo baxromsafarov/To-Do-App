@@ -9,8 +9,8 @@ function Important(props) {
 
 
     const filteredTasks = props.tasks.filter(task => {
-        if (task.completed) return false
-        return task.favorite
+        if (task.completed == 1 ? true : false) return false
+        return task.favorite == 1 ? true : false
     })
 
     return (

@@ -12,29 +12,32 @@ import Register from './components/Register/Register';
 import Important from './components/Important/Important';
 import Calendar from './components/Calendar/Calendar';
 import TaskId from './components/TaskId/TaskId';
-import AddTask from "./components/AddTask/AddTask";
 import Done from "./components/Done/Done";
 import AllTasks from "./components/AllTasks/AllTasks";
 import Logout from "./components/Logout/Logout";
 import Category from "./components/Category/Category";
 import AddCategory from "./components/AddCategory/AddCategory";
+import CategoryId from "./components/CategoryId/CategoryId";
 
-const initialTasks = [];
 
-const initialCat = [];
+// const apiInfo = {
+//     host: 'http://todo.loc',
+//     apiHost: 'http://todo.loc/api',
+// };
 
 const apiInfo = {
-    host: 'http://todo.loc',
-    apiHost: 'http://todo.loc/api',
+    host: 'http://manabi.uz/todo/public',
+    apiHost: 'http://manabi.uz/todo/public/api',
 };
+
 
 function App() {
     const localUser = localStorage.getItem('userToken');
-    const [tasks, setTasks] = useState(initialTasks);
+    const [tasks, setTasks] = useState([]);
     const [user, setUser] = useState();
     const [csrfToken, setCsrfToken] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-    const [cats, setCat] = useState(initialCat);
+    const [cats, setCat] = useState([]);
 
     const addCatHandler = (cat) => {
         setCat(prevCats => {
@@ -50,12 +53,23 @@ function App() {
             getUserData();
             getUserCategories();
         } else {
-            const localData = JSON.parse(localStorage.getItem('tasks')) || [];
-            setTasks(localData);
+            const localData = getLocalStorage('tasks') || [];
+            if (localData) {
+                setTasks(localData);
+            } else {
+                setTasks([]);
+            }
             setIsLoading(false);
         }
     }, []);
 
+    // const setLocalStorage = (data, store) => {
+    //     localStorage.setItem(store, JSON.stringify(data))
+    // }
+
+    const getLocalStorage = (store) => {
+        return JSON.parse(localStorage.getItem(store))
+    }
     const getUserData = async () => {
         try {
             const response = await loggedAxios.get('/user');
@@ -65,11 +79,12 @@ function App() {
         }
     };
 
+
     const getUserTasks = async () => {
         try {
             const response = await loggedAxios.get('/todos');
-            setTasks((prevTasks) => [...response.data.todo_list]);
-            setIsLoading(false)
+            setTasks([...response.data.todo_list]);
+            setIsLoading(false);
         } catch (error) {
             console.error('Error getting todos data', error);
         }
@@ -103,12 +118,20 @@ function App() {
         withCredentials: true,
     });
 
+    // const addTaskToLocalStorage = () => {
+    //
+    // }
     const addTaskHandler = async (task) => {
         try {
+            // if (localUser) {
             const response = await loggedAxios.post('/todo', {
                 name: task.task_name,
                 deadline: formatDate(new Date())
             });
+            // } else {
+            //
+            // }
+
 
             getUserTasks()
             getUserCategories()
@@ -117,24 +140,28 @@ function App() {
         }
     };
 
-    const updateTaskHandler = async (task_id, task) => {
+    const updateTaskHandler = async (task_id, requestData) => {
         try {
-            const requestData = {
-                name: task.name,
-                deadline: task.deadline
-            };
-
-            if (task.description) {
-                requestData.description = task.description;
-            }
-
-            await loggedAxios.put('/todo/' + task_id, requestData);
+            await loggedAxios.post('/todo/' + task_id, requestData);
             window.history.back()
             getUserTasks()
+            getUserCategories()
         } catch (error) {
             console.error('Error adding task:', error);
         }
     };
+
+    const updateCategoryHandler = async (id, data) => {
+        try {
+            await loggedAxios.post('/categories/' + id, data);
+            window.history.back()
+            getUserTasks()
+            getUserCategories()
+        } catch (e) {
+            console.error('Error update category:', e);
+        }
+
+    }
 
     const addTaskFormHandler = async (task) => {
         try {
@@ -147,7 +174,9 @@ function App() {
 
             if (task?.description) request.description = task.description
             const response = await loggedAxios.post('/todo', request);
-            getUserTasks()
+            if (response) {
+                getUserTasks()
+            }
         } catch (error) {
             console.error('Error adding task:', error);
         }
@@ -193,7 +222,7 @@ function App() {
 
     const sendDeleteTask = async (task_id, target) => {
         try {
-            await loggedAxios.delete('/todo/' + task_id);
+            await loggedAxios.post('/todo-delete/' + task_id);
             target.checked = false
             getUserTasks()
         } catch (error) {
@@ -201,23 +230,35 @@ function App() {
         }
     }
 
+    const sendDeleteCategory = async (category_id) => {
+        try {
+            await loggedAxios.post('/categories-delete/' + category_id);
+            getUserTasks()
+            getUserCategories()
+        } catch (error) {
+            console.error('Error adding task:', error);
+        }
+    }
+
 
     const getUserCategories = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
         try {
             const response = await loggedAxios.get('/categories');
-            setCat((prevTasks) => [...response.data]);
-            setIsLoading(false)
+            setCat([...response.data]);
+            setIsLoading(false);
         } catch (error) {
             console.error('Error getting todos data', error);
-            setIsLoading(false)
+            setIsLoading(false);
         }
     };
+
 
     return (
         <div className="container">
             <Router>
                 <Header logUser={localUser}></Header>
+                <Footer></Footer>
                 <Routes>
                     <Route exact path="/" element={
                         <Main onAddTask={addTaskHandler}
@@ -307,12 +348,19 @@ function App() {
                     <Route path="/category/:cat_id/:id" element={
                         <TaskId formatDate={formatDate} tasks={tasks} cats={cats} onUpdateTask={updateTaskHandler}/>}
                     ></Route>
+                    <Route path="/edit-category/:cat_id" element={
+                        isLoading ? (
+                            <div className="loading">i読み込み中..</div>
+                        ) : (
+                            <CategoryId tasks={tasks} cats={cats} onUpdateCategory={updateCategoryHandler}/>
+                        )}></Route>
                     <Route exact path="/category" element={
                         isLoading ? (
                             <div className="loading">i読み込み中..</div>
                         ) : (
-                            <AddCat egory cats={cats} onAddCat={addCategoryFormHandler}/>
+                            <AddCategory onDelete={sendDeleteCategory} cats={cats} onAddCat={addCategoryFormHandler}/>
                         )}></Route>
+
 
                     <Route path="*" element={<Error/>}/>
                 </Routes>

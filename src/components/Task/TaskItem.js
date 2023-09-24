@@ -1,20 +1,20 @@
 import Card from "../UI/Card";
 import Skip from "./Skip";
 import Star from "./Star";
-import TaskDate from "./TaskDate";
 import "./TaskItem.css"
 import {NavLink} from "react-router-dom";
-import {is} from "react-date-range/dist/locale";
+
 
 function TaskItem(props) {
     const taskId = props.id
     const taskName = props.name
     const taskDescription = props.description
-    const taskData = props.date
-    const taskCompleted = props.completed
-    const taskFavorite = props.favorite
+    const taskDate = props.date
+    const taskCompleted = props.completed == 1 ? true : false
+    const taskFavorite = props.favorite == 1 ? true : false
     const taskPriority = props.priority
     const taskCategory = props.taskCategory
+    console.log(props)
 
     const handlerCompleteClick = (e) => {
         const isComplete = e.target.checked;
@@ -35,6 +35,10 @@ function TaskItem(props) {
         }
     };
 
+    const taskDateObj = new Date(taskDate).setHours(0, 0, 0, 0);
+    const currentDate = new Date().setHours(0, 0, 0, 0);
+    const taskDateStatus = taskDateObj < currentDate ? "shimekiri" : "";
+
     return (
         <div className="card-box">
             <Card className={props.class + ' prority_' + taskPriority}>
@@ -53,6 +57,7 @@ function TaskItem(props) {
                         </div>
                         <div className="cost-item__price">{taskDescription}</div>
                     </div>
+                    <div className={`cost-item__price ${taskDateStatus}`}>{taskDate}</div>
                 </div>
 
 

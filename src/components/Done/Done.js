@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function Done(props) {
     const filteredTasks = props.tasks.filter(task => {
-        return task.completed
+        return task.completed == 1 ? true : false
     })
     const addTaskHandler = (task) => {
         props.onAddTask(task);

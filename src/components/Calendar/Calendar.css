@@ -56,27 +56,12 @@
 .fil-tasks > div {
     background-color: #fff;
     border-radius: 8px;
-    padding: 5px 0;
-    padding-left: 10px;
-    padding-right: 40px;
+    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .fil-tasks h2 {
     margin: 0;
-}
-
-.prority_1 {
-    border-left: #00ff29 10px solid;
-}
-.prority_2 {
-    border-left: yellow 10px solid;
-}
-.prority_3 {
-    border-left: red 10px solid;
 }
 
 .calendars .rdrCalendar {
@@ -100,7 +85,21 @@
 }
 
 
+.prority_1 {
+    border-left: #00ff29 10px solid;
+}
 
+.prority_2 {
+    border-left: yellow 10px solid;
+}
+
+.prority_3 {
+    border-left: red 10px solid;
+}
+
+.shimekiri {
+    color: red;
+}
 
 
 .rdrDefinedRangesWrapper {

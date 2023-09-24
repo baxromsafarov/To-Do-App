@@ -9,6 +9,13 @@ const AddCategory = (props) => {
         setInputName(event.target.value);
     };
 
+    const handleDelete = (categoryId, categoryName) => {
+        const confirmMessage = `カテゴリ "${categoryName}" を削除しますか？`; // Japanese confirmation message
+        if (window.confirm(confirmMessage)) {
+            props.onDelete(categoryId)
+        }
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -21,17 +28,27 @@ const AddCategory = (props) => {
         setInputName("");
     };
 
+
     return (
         <div className="cat">
             <ul className="cat-list">
                 <div className="cat-title">
                     {props.cats.map((cat) => (
                         <div key={cat.id} className="cat-link">
-                            <NavLink to={`/category/${cat.id}`}>
-                                <div className="error">
-                                    <div className="error__title">{cat.title}</div>
+                            <div className="error">
+                                <div className="error__title">{cat.title}</div>
+                                <div className="buttons">
+                                    <NavLink to={`/category/${cat.id}`}>
+                                        <span className="material-symbols-outlined icon">visibility</span>
+                                    </NavLink>
+                                    <NavLink to={`/edit-category/${cat.id}`}>
+                                        <span className="material-symbols-outlined icon">edit</span>
+                                    </NavLink>
+                                    <span className="material-symbols-outlined icon"
+                                          onClick={() => handleDelete(cat.id, cat.title)}>delete</span>
                                 </div>
-                            </NavLink>
+                            </div>
+
                         </div>
                     ))}
                 </div>

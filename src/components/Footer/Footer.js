@@ -6,7 +6,7 @@ const Footer = () => {
 
     const sideBar = () =>{
         document.getElementById('sidebar').classList.toggle('activess');
-      
+
         var dropdowns = document.getElementsByClassName('dropdown-toggle');
         if (dropdowns.length > 0) {
             for (var i = 0; i < dropdowns.length; i++) {
@@ -15,55 +15,55 @@ const Footer = () => {
             }
         }
         document.querySelector('.overlay').classList.toggle('activess');
-        
+
         document.querySelector('.btn').classList.add('btn-active');
     }
     const disMiss = () => {
 
         document.getElementById('sidebar').classList.remove('activess');
-       
+
         document.querySelector('.overlay').classList.remove('activess');
 
         document.querySelector('.btn').classList.remove('btn-active');
     }
 
     return(
-    <footer className="footer-wrapper">
-        <div className="footer-cotegories">
-            <ul>
-                <li>
-                    <NavLink to="/">
+        <footer className="footer-wrapper">
+            <div className="footer-cotegories">
+                <ul>
+                    <li>
+                        <NavLink to="/">
                         <span className="material-symbols-outlined icons">
                             light_mode
                         </span>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/taskform">
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/taskform">
                         <span className="material-symbols-outlined icons">
                             library_add
                         </span>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/important">
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/important">
                         <span className="material-symbols-outlined icons">
                             stars
                         </span>
-                    </NavLink>
-                </li>
-               <li>
-                    <NavLink to="/calendar">
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/calendar">
                         <span className="material-symbols-outlined icons">
                             calendar_month
                         </span>
-                    </NavLink>
-                </li>
-            </ul>
-        </div>
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
 
-        
-    </footer>
+
+        </footer>
     );
 
 }

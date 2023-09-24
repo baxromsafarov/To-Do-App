@@ -25,7 +25,7 @@ const TaskList = (props) => {
             {props.tasks.map((task) => (
                 <TaskItem
                     id={task.id}
-                    date={task.created_date}
+                    date={task.task_deadline}
                     name={task.task_name}
                     description={task.task_description && task.task_description}
                     favorite={task.favorite && task.favorite}

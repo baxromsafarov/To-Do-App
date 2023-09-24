@@ -7,11 +7,13 @@ import React, {useState} from 'react';
 const Main = (props) => {
     const today = new Date()
     today.setHours(0, 0, 0, 0);
+
     const filteredTasks = props.tasks.filter(task => {
+
         const taskDeadline = new Date(task.task_deadline);
         taskDeadline.setHours(0, 0, 0, 0);
 
-        if (taskDeadline <= today && !task.completed) {
+        if (taskDeadline <= today && !(task.completed == 1 ? true : false) ) {
             return true;
         }
 

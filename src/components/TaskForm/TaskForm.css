@@ -32,9 +32,9 @@
     white-space: nowrap;
     padding: 10px;
 }
-/*.cat-input::-webkit-scrollbar {*/
-/*    display: none;*/
-/*}*/
+.cat-input::-webkit-scrollbar {
+    display: none;
+}
 
 .cat-input{
     -ms-overflow-style: none;  /* IE and Edge */
@@ -42,8 +42,7 @@
 }
 
 .form {
-
-    margin: 2em auto;
+    margin: 2em auto 0 auto;
     background-color: #fff;
     overflow: hidden;
     border-radius: 1em;

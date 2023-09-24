@@ -21,11 +21,18 @@ function Calendars(props) {
 
 
     const filterTasks = (start, end) => {
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+
         const filtered = props.allTasks.filter((task) => {
             const taskDate = new Date(task.task_deadline);
-            const inclusiveEndDate = new Date(end);
+            taskDate.setHours(0, 0, 0, 0);
+            const inclusiveEndDate = new Date(endDate);
             inclusiveEndDate.setDate(inclusiveEndDate.getDate() + 1);
-            return taskDate >= start && taskDate < inclusiveEndDate
+
+            return taskDate >= startDate && taskDate < inclusiveEndDate
         });
 
         setTasks(filtered);
@@ -55,7 +62,7 @@ function Calendars(props) {
 
                 </div>
                 <div className="fil-tasks">
-                    {tasks.filter(task => !task.completed).map((task) => {
+                    {tasks.filter(task => !(task.completed == 1 ? true : false)).map((task) => {
                         const handlerCompleteClick = (e) => {
                             const isComplete = e.target.checked;
                             props.onCompiled(task.id, isComplete);
@@ -75,16 +82,20 @@ function Calendars(props) {
                             }
                         };
 
+                        const taskDateObj = new Date(task.task_deadline).setHours(0, 0, 0, 0);
+                        const currentDate = new Date().setHours(0, 0, 0, 0);
+                        const taskDateStatus = taskDateObj < currentDate ? "shimekiri" : "";
+
                         return (
                             <Card className={props.class + ' prority_' + task.task_priority}>
                                 <div className="left-icons">
                                     <div className="btn-input">
                                         <label className="container-input">
                                             <input type="checkbox" name={task.id}
-                                                   checked={task.completed} onChange={handlerCompleteClick}/>
+                                                   checked={task.completed== 1 ? true : false} onChange={handlerCompleteClick}/>
                                             <div className="checkmark"></div>
                                         </label>
-                                        <Star id={task.id} favorite={task.favorite} handler={handlerFavoriteClick}/>
+                                        <Star id={task.id} favorite={task.favorite== 1 ? true : false} handler={handlerFavoriteClick}/>
                                     </div>
                                     <div className="desc-data">
                                         <div className="titles">
@@ -92,6 +103,7 @@ function Calendars(props) {
                                         </div>
                                         <div className="cost-item__price">{task.task_description}</div>
                                     </div>
+                                    <div className={`cost-item__price ${taskDateStatus}`}>{task.task_deadline}</div>
                                 </div>
                                 <div className="right-icons btn-input">
                                     <div className="cats">
